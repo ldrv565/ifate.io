@@ -492,7 +492,7 @@
         <h1>Спроси шар, если осмелишься</h1>
         <p class="lead">
           Напиши любой вопрос, нажми Enter или кнопку, и магический шар даст свой вердикт:
-          да, нет или загадочный ответ в духе мага.
+          да или нет.
         </p>
 
         <div class="ask-box">
@@ -521,7 +521,7 @@
           </div>
           <div class="ball" id="magicBall">
             <div class="answer-window">
-              <div class="answer-text mage" id="answerText">ЖДУ ВОПРОС</div>
+              <div class="answer-text yes" id="answerText">ЖДУ ВОПРОС</div>
             </div>
           </div>
         </div>
@@ -540,15 +540,6 @@
     const answers = [
       { text: "ДА", tone: "yes" },
       { text: "НЕТ", tone: "no" },
-      { text: "МАГ ОДОБРЯЕТ", tone: "mage", small: true },
-      { text: "ТУМАННО, НО ДА", tone: "mage", small: true },
-      { text: "ЗВЕЗДЫ ШЕПЧУТ НЕТ", tone: "mage", small: true },
-      { text: "КОЛДУН ВИДИТ ДА", tone: "mage", small: true },
-      { text: "НЕ ИСПЫТЫВАЙ СУДЬБУ", tone: "no", small: true },
-      { text: "МОЖЕШЬ РИСКНУТЬ", tone: "yes", small: true },
-      { text: "АКИНАТОР БЫ КИВНУЛ", tone: "mage", small: true },
-      { text: "СИЛЫ ПРОТИВ", tone: "no", small: true },
-      { text: "СИЛЫ ЗА", tone: "yes", small: true }
     ];
 
     let busy = false;
@@ -567,9 +558,8 @@
       answerText.className = "answer-text " + answer.tone + (answer.small ? " small" : "");
 
       const labelMap = {
-        yes: "режим: уверенное да",
-        no: "режим: суровое нет",
-        mage: "режим: магический туман"
+        yes: "режим: да",
+        no: "режим: нет"
       };
 
       resultChip.textContent = labelMap[answer.tone] || "режим: предсказание";
@@ -587,7 +577,7 @@
       if (!question || busy) {
         if (!question) {
           answerText.textContent = "ЗАДАЙ ВОПРОС";
-          answerText.className = "answer-text mage small";
+          answerText.className = "answer-text no small";
           resultChip.textContent = "режим: нужен вопрос";
         }
         return;
@@ -596,7 +586,7 @@
       busy = true;
       shakeBall();
       answerText.textContent = "...";
-      answerText.className = "answer-text mage flash";
+      answerText.className = "answer-text yes flash";
       resultChip.textContent = "режим: читаю знаки";
 
       window.setTimeout(() => {
