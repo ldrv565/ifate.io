@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -489,10 +489,10 @@
     <section class="card">
       <div class="copy">
         <span class="eyebrow">Magic Ball Oracle</span>
-        <h1>Спроси шар, если осмелишься</h1>
+        <h1>Ask the ball, if you dare</h1>
         <p class="lead">
-          Напиши любой вопрос, нажми Enter или кнопку, и магический шар даст свой вердикт:
-          да или нет.
+          Type any question, press Enter or the button, and the magic ball will give its verdict:
+          yes or no.
         </p>
 
         <div class="ask-box">
@@ -501,12 +501,12 @@
               id="questionInput"
               type="text"
               maxlength="160"
-              placeholder="Например: стоит ли мне сегодня пушить в master?"
+              placeholder="For example: Should I push to master today?"
               autocomplete="off"
             >
-            <button id="askButton" type="button">Узнать судьбу</button>
+            <button id="askButton" type="button">Find out fate</button>
           </div>
-          <p class="hint">Нужен вопрос. Пустой инпут шар игнорирует.</p>
+          <p class="hint">Ask a question. Empty input is ignored.</p>
         </div>
       </div>
 
@@ -521,11 +521,11 @@
           </div>
           <div class="ball" id="magicBall">
             <div class="answer-window">
-              <div class="answer-text yes" id="answerText">ЖДУ ВОПРОС</div>
+              <div class="answer-text yes" id="answerText">ASK A QUESTION</div>
             </div>
           </div>
         </div>
-        <div class="result-chip" id="resultChip">режим: ожидание</div>
+        <div class="result-chip" id="resultChip">mode: waiting</div>
       </div>
     </section>
   </main>
@@ -538,8 +538,8 @@
     const resultChip = document.getElementById("resultChip");
 
     const answers = [
-      { text: "ДА", tone: "yes" },
-      { text: "НЕТ", tone: "no" },
+      { text: "YES", tone: "yes" },
+      { text: "NO", tone: "no" },
     ];
 
     let busy = false;
@@ -558,8 +558,8 @@
       answerText.className = "answer-text " + answer.tone + (answer.small ? " small" : "");
 
       const labelMap = {
-        yes: "режим: да",
-        no: "режим: нет"
+        yes: "mode: yes",
+        no: "mode: no"
       };
 
       resultChip.textContent = labelMap[answer.tone] || "режим: предсказание";
@@ -576,9 +576,9 @@
 
       if (!question || busy) {
         if (!question) {
-          answerText.textContent = "ЗАДАЙ ВОПРОС";
+          answerText.textContent = "ASK A QUESTION";
           answerText.className = "answer-text no small";
-          resultChip.textContent = "режим: нужен вопрос";
+          resultChip.textContent = "mode: question required";
         }
         return;
       }
@@ -587,7 +587,7 @@
       shakeBall();
       answerText.textContent = "...";
       answerText.className = "answer-text yes flash";
-      resultChip.textContent = "режим: читаю знаки";
+      resultChip.textContent = "mode: reading signs";
 
       window.setTimeout(() => {
         const answer = pickAnswer(question);
